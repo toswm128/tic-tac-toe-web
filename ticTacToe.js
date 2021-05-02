@@ -1,22 +1,24 @@
 const table = document.querySelector("table");
 const tableArray = [[], [], []];
-let order = true;
+let order = false;
 const o = "O";
 const x = "X";
 
 const orderMark = () => {
-  if (order) {
-    order = !order;
-    return o;
+  let Mark;
+  if (!order) {
+    Mark = o;
   } else {
-    order = !order;
-    return x;
+    Mark = x;
   }
+  order = !order;
+  return Mark;
 };
 
 const handleTable = e => {
   const target = e.path[0];
   markTable(target);
+  isLine();
 };
 
 const markTable = target => {
@@ -32,6 +34,21 @@ const markTable = target => {
           return targetTable;
         }
       }
+    }
+  }
+};
+
+const isLine = () => {
+  for (i = 0; i <= 2; i++) {
+    if (
+      tableArray[0][0].order &&
+      tableArray[1][0].order &&
+      tableArray[2][0].order
+    ) {
+      console.log("A");
+    }
+    for (j = 0; j <= 2; j++) {
+      console.log(tableArray[i][j].order);
     }
   }
 };
